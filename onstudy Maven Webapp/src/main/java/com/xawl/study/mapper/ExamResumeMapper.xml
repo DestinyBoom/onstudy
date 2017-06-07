@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xawl.study.dao.ExamResumeMapper" >
+  <resultMap id="BaseResultMap" type="com.xawl.study.model.ExamResume" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="equest" property="equest" jdbcType="VARCHAR" />
+    <result column="qid" property="qid" jdbcType="INTEGER" />
+    <result column="edate" property="edate" jdbcType="DATE" />
+    <result column="eid" property="eid" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xawl.study.model.ExamResume" extends="BaseResultMap" >
+    <result column="answer" property="answer" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, equest, qid, edate, eid
+  </sql>
+  <sql id="Blob_Column_List" >
+    answer
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from exam_resume
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from exam_resume
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xawl.study.model.ExamResume" >
+    insert into exam_resume (id, equest, qid, 
+      edate, eid, answer
+      )
+    values (#{id,jdbcType=INTEGER}, #{equest,jdbcType=VARCHAR}, #{qid,jdbcType=INTEGER}, 
+      #{edate,jdbcType=DATE}, #{eid,jdbcType=INTEGER}, #{answer,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xawl.study.model.ExamResume" >
+    insert into exam_resume
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="equest != null" >
+        equest,
+      </if>
+      <if test="qid != null" >
+        qid,
+      </if>
+      <if test="edate != null" >
+        edate,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="answer != null" >
+        answer,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="equest != null" >
+        #{equest,jdbcType=VARCHAR},
+      </if>
+      <if test="qid != null" >
+        #{qid,jdbcType=INTEGER},
+      </if>
+      <if test="edate != null" >
+        #{edate,jdbcType=DATE},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="answer != null" >
+        #{answer,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xawl.study.model.ExamResume" >
+    update exam_resume
+    <set >
+      <if test="equest != null" >
+        equest = #{equest,jdbcType=VARCHAR},
+      </if>
+      <if test="qid != null" >
+        qid = #{qid,jdbcType=INTEGER},
+      </if>
+      <if test="edate != null" >
+        edate = #{edate,jdbcType=DATE},
+      </if>
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="answer != null" >
+        answer = #{answer,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xawl.study.model.ExamResume" >
+    update exam_resume
+    set equest = #{equest,jdbcType=VARCHAR},
+      qid = #{qid,jdbcType=INTEGER},
+      edate = #{edate,jdbcType=DATE},
+      eid = #{eid,jdbcType=INTEGER},
+      answer = #{answer,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xawl.study.model.ExamResume" >
+    update exam_resume
+    set equest = #{equest,jdbcType=VARCHAR},
+      qid = #{qid,jdbcType=INTEGER},
+      edate = #{edate,jdbcType=DATE},
+      eid = #{eid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xawl.study.dao.Err_logMapper" >
+  <resultMap id="BaseResultMap" type="com.xawl.study.model.Err_log" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="insert_time" property="insertTime" jdbcType="TIMESTAMP" />
+    <result column="oper_user" property="operUser" jdbcType="VARCHAR" />
+    <result column="rsrv1" property="rsrv1" jdbcType="VARCHAR" />
+    <result column="rsrv6" property="rsrv6" jdbcType="VARCHAR" />
+    <result column="rsrv3" property="rsrv3" jdbcType="VARCHAR" />
+    <result column="rsrv5" property="rsrv5" jdbcType="VARCHAR" />
+    <result column="rsrv7" property="rsrv7" jdbcType="VARCHAR" />
+    <result column="rsrv8" property="rsrv8" jdbcType="VARCHAR" />
+    <result column="rsrv2" property="rsrv2" jdbcType="VARCHAR" />
+    <result column="rsrv4" property="rsrv4" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.xawl.study.model.Err_log" extends="BaseResultMap" >
+    <result column="err_info" property="errInfo" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, insert_time, oper_user, rsrv1, rsrv6, rsrv3, rsrv5, rsrv7, rsrv8, rsrv2, rsrv4
+  </sql>
+  <sql id="Blob_Column_List" >
+    err_info
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from err_log
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from err_log
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xawl.study.model.Err_log" >
+    insert into err_log (id, insert_time, oper_user, 
+      rsrv1, rsrv6, rsrv3, 
+      rsrv5, rsrv7, rsrv8, 
+      rsrv2, rsrv4, err_info
+      )
+    values (#{id,jdbcType=VARCHAR}, #{insertTime,jdbcType=TIMESTAMP}, #{operUser,jdbcType=VARCHAR}, 
+      #{rsrv1,jdbcType=VARCHAR}, #{rsrv6,jdbcType=VARCHAR}, #{rsrv3,jdbcType=VARCHAR}, 
+      #{rsrv5,jdbcType=VARCHAR}, #{rsrv7,jdbcType=VARCHAR}, #{rsrv8,jdbcType=VARCHAR}, 
+      #{rsrv2,jdbcType=VARCHAR}, #{rsrv4,jdbcType=VARCHAR}, #{errInfo,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xawl.study.model.Err_log" >
+    insert into err_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="insertTime != null" >
+        insert_time,
+      </if>
+      <if test="operUser != null" >
+        oper_user,
+      </if>
+      <if test="rsrv1 != null" >
+        rsrv1,
+      </if>
+      <if test="rsrv6 != null" >
+        rsrv6,
+      </if>
+      <if test="rsrv3 != null" >
+        rsrv3,
+      </if>
+      <if test="rsrv5 != null" >
+        rsrv5,
+      </if>
+      <if test="rsrv7 != null" >
+        rsrv7,
+      </if>
+      <if test="rsrv8 != null" >
+        rsrv8,
+      </if>
+      <if test="rsrv2 != null" >
+        rsrv2,
+      </if>
+      <if test="rsrv4 != null" >
+        rsrv4,
+      </if>
+      <if test="errInfo != null" >
+        err_info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="insertTime != null" >
+        #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operUser != null" >
+        #{operUser,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrv1 != null" >
+        #{rsrv1,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrv6 != null" >
+        #{rsrv6,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrv3 != null" >
+        #{rsrv3,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrv5 != null" >
+        #{rsrv5,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrv7 != null" >
+        #{rsrv7,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrv8 != null" >
+        #{rsrv8,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrv2 != null" >
+        #{rsrv2,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrv4 != null" >
+        #{rsrv4,jdbcType=VARCHAR},
+      </if>
+      <if test="errInfo != null" >
+        #{errInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xawl.study.model.Err_log" >
+    update err_log
+    <set >
+      <if test="insertTime != null" >
+        insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operUser != null" >
+        oper_user = #{operUser,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrv1 != null" >
+        rsrv1 = #{rsrv1,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrv6 != null" >
+        rsrv6 = #{rsrv6,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrv3 != null" >
+        rsrv3 = #{rsrv3,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrv5 != null" >
+        rsrv5 = #{rsrv5,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrv7 != null" >
+        rsrv7 = #{rsrv7,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrv8 != null" >
+        rsrv8 = #{rsrv8,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrv2 != null" >
+        rsrv2 = #{rsrv2,jdbcType=VARCHAR},
+      </if>
+      <if test="rsrv4 != null" >
+        rsrv4 = #{rsrv4,jdbcType=VARCHAR},
+      </if>
+      <if test="errInfo != null" >
+        err_info = #{errInfo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xawl.study.model.Err_log" >
+    update err_log
+    set insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      oper_user = #{operUser,jdbcType=VARCHAR},
+      rsrv1 = #{rsrv1,jdbcType=VARCHAR},
+      rsrv6 = #{rsrv6,jdbcType=VARCHAR},
+      rsrv3 = #{rsrv3,jdbcType=VARCHAR},
+      rsrv5 = #{rsrv5,jdbcType=VARCHAR},
+      rsrv7 = #{rsrv7,jdbcType=VARCHAR},
+      rsrv8 = #{rsrv8,jdbcType=VARCHAR},
+      rsrv2 = #{rsrv2,jdbcType=VARCHAR},
+      rsrv4 = #{rsrv4,jdbcType=VARCHAR},
+      err_info = #{errInfo,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xawl.study.model.Err_log" >
+    update err_log
+    set insert_time = #{insertTime,jdbcType=TIMESTAMP},
+      oper_user = #{operUser,jdbcType=VARCHAR},
+      rsrv1 = #{rsrv1,jdbcType=VARCHAR},
+      rsrv6 = #{rsrv6,jdbcType=VARCHAR},
+      rsrv3 = #{rsrv3,jdbcType=VARCHAR},
+      rsrv5 = #{rsrv5,jdbcType=VARCHAR},
+      rsrv7 = #{rsrv7,jdbcType=VARCHAR},
+      rsrv8 = #{rsrv8,jdbcType=VARCHAR},
+      rsrv2 = #{rsrv2,jdbcType=VARCHAR},
+      rsrv4 = #{rsrv4,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

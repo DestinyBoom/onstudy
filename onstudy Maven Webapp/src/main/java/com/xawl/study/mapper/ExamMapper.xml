@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xawl.study.dao.ExamMapper" >
+  <resultMap id="BaseResultMap" type="com.xawl.study.model.Exam" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="examDate" property="examdate" jdbcType="TIMESTAMP" />
+    <result column="moreScore" property="morescore" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="singleScore" property="singlescore" jdbcType="INTEGER" />
+    <result column="paperId" property="paperid" jdbcType="INTEGER" />
+    <result column="studentId" property="studentid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, examDate, moreScore, score, singleScore, paperId, studentId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_exam
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_exam
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xawl.study.model.Exam" >
+    insert into t_exam (id, examDate, moreScore, 
+      score, singleScore, paperId, 
+      studentId)
+    values (#{id,jdbcType=INTEGER}, #{examdate,jdbcType=TIMESTAMP}, #{morescore,jdbcType=INTEGER}, 
+      #{score,jdbcType=INTEGER}, #{singlescore,jdbcType=INTEGER}, #{paperid,jdbcType=INTEGER}, 
+      #{studentid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xawl.study.model.Exam" >
+    insert into t_exam
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="examdate != null" >
+        examDate,
+      </if>
+      <if test="morescore != null" >
+        moreScore,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="singlescore != null" >
+        singleScore,
+      </if>
+      <if test="paperid != null" >
+        paperId,
+      </if>
+      <if test="studentid != null" >
+        studentId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="examdate != null" >
+        #{examdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="morescore != null" >
+        #{morescore,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="singlescore != null" >
+        #{singlescore,jdbcType=INTEGER},
+      </if>
+      <if test="paperid != null" >
+        #{paperid,jdbcType=INTEGER},
+      </if>
+      <if test="studentid != null" >
+        #{studentid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xawl.study.model.Exam" >
+    update t_exam
+    <set >
+      <if test="examdate != null" >
+        examDate = #{examdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="morescore != null" >
+        moreScore = #{morescore,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="singlescore != null" >
+        singleScore = #{singlescore,jdbcType=INTEGER},
+      </if>
+      <if test="paperid != null" >
+        paperId = #{paperid,jdbcType=INTEGER},
+      </if>
+      <if test="studentid != null" >
+        studentId = #{studentid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xawl.study.model.Exam" >
+    update t_exam
+    set examDate = #{examdate,jdbcType=TIMESTAMP},
+      moreScore = #{morescore,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      singleScore = #{singlescore,jdbcType=INTEGER},
+      paperId = #{paperid,jdbcType=INTEGER},
+      studentId = #{studentid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

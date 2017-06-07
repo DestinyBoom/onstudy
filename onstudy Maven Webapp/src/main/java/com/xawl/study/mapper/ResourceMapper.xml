@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xawl.study.dao.ResourceMapper" >
+  <resultMap id="BaseResultMap" type="com.xawl.study.model.Resource" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="resourceName" property="resourcename" jdbcType="VARCHAR" />
+    <result column="resume" property="resume" jdbcType="VARCHAR" />
+    <result column="src" property="src" jdbcType="VARCHAR" />
+    <result column="showImageSrc" property="showimagesrc" jdbcType="VARCHAR" />
+    <result column="beLongToInterestID" property="belongtointerestid" jdbcType="INTEGER" />
+    <result column="uploadeDate" property="uploadedate" jdbcType="DATE" />
+    <result column="resourceType" property="resourcetype" jdbcType="INTEGER" />
+    <result column="ok_read" property="okRead" jdbcType="TINYINT" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="likeSum" property="likesum" jdbcType="INTEGER" />
+    <result column="aid" property="aid" jdbcType="INTEGER" />
+    <result column="fid" property="fid" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="ordery" property="ordery" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, resourceName, resume, src, showImageSrc, beLongToInterestID, uploadeDate, resourceType, 
+    ok_read, type, likeSum, aid, fid, cid, ordery
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from resource
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from resource
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xawl.study.model.Resource" >
+    insert into resource (id, resourceName, resume, 
+      src, showImageSrc, beLongToInterestID, 
+      uploadeDate, resourceType, ok_read, 
+      type, likeSum, aid, 
+      fid, cid, ordery)
+    values (#{id,jdbcType=INTEGER}, #{resourcename,jdbcType=VARCHAR}, #{resume,jdbcType=VARCHAR}, 
+      #{src,jdbcType=VARCHAR}, #{showimagesrc,jdbcType=VARCHAR}, #{belongtointerestid,jdbcType=INTEGER}, 
+      #{uploadedate,jdbcType=DATE}, #{resourcetype,jdbcType=INTEGER}, #{okRead,jdbcType=TINYINT}, 
+      #{type,jdbcType=TINYINT}, #{likesum,jdbcType=INTEGER}, #{aid,jdbcType=INTEGER}, 
+      #{fid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{ordery,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xawl.study.model.Resource" >
+    insert into resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="resourcename != null" >
+        resourceName,
+      </if>
+      <if test="resume != null" >
+        resume,
+      </if>
+      <if test="src != null" >
+        src,
+      </if>
+      <if test="showimagesrc != null" >
+        showImageSrc,
+      </if>
+      <if test="belongtointerestid != null" >
+        beLongToInterestID,
+      </if>
+      <if test="uploadedate != null" >
+        uploadeDate,
+      </if>
+      <if test="resourcetype != null" >
+        resourceType,
+      </if>
+      <if test="okRead != null" >
+        ok_read,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="likesum != null" >
+        likeSum,
+      </if>
+      <if test="aid != null" >
+        aid,
+      </if>
+      <if test="fid != null" >
+        fid,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="ordery != null" >
+        ordery,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="resourcename != null" >
+        #{resourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="resume != null" >
+        #{resume,jdbcType=VARCHAR},
+      </if>
+      <if test="src != null" >
+        #{src,jdbcType=VARCHAR},
+      </if>
+      <if test="showimagesrc != null" >
+        #{showimagesrc,jdbcType=VARCHAR},
+      </if>
+      <if test="belongtointerestid != null" >
+        #{belongtointerestid,jdbcType=INTEGER},
+      </if>
+      <if test="uploadedate != null" >
+        #{uploadedate,jdbcType=DATE},
+      </if>
+      <if test="resourcetype != null" >
+        #{resourcetype,jdbcType=INTEGER},
+      </if>
+      <if test="okRead != null" >
+        #{okRead,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="likesum != null" >
+        #{likesum,jdbcType=INTEGER},
+      </if>
+      <if test="aid != null" >
+        #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null" >
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="ordery != null" >
+        #{ordery,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xawl.study.model.Resource" >
+    update resource
+    <set >
+      <if test="resourcename != null" >
+        resourceName = #{resourcename,jdbcType=VARCHAR},
+      </if>
+      <if test="resume != null" >
+        resume = #{resume,jdbcType=VARCHAR},
+      </if>
+      <if test="src != null" >
+        src = #{src,jdbcType=VARCHAR},
+      </if>
+      <if test="showimagesrc != null" >
+        showImageSrc = #{showimagesrc,jdbcType=VARCHAR},
+      </if>
+      <if test="belongtointerestid != null" >
+        beLongToInterestID = #{belongtointerestid,jdbcType=INTEGER},
+      </if>
+      <if test="uploadedate != null" >
+        uploadeDate = #{uploadedate,jdbcType=DATE},
+      </if>
+      <if test="resourcetype != null" >
+        resourceType = #{resourcetype,jdbcType=INTEGER},
+      </if>
+      <if test="okRead != null" >
+        ok_read = #{okRead,jdbcType=TINYINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="likesum != null" >
+        likeSum = #{likesum,jdbcType=INTEGER},
+      </if>
+      <if test="aid != null" >
+        aid = #{aid,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null" >
+        fid = #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="ordery != null" >
+        ordery = #{ordery,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xawl.study.model.Resource" >
+    update resource
+    set resourceName = #{resourcename,jdbcType=VARCHAR},
+      resume = #{resume,jdbcType=VARCHAR},
+      src = #{src,jdbcType=VARCHAR},
+      showImageSrc = #{showimagesrc,jdbcType=VARCHAR},
+      beLongToInterestID = #{belongtointerestid,jdbcType=INTEGER},
+      uploadeDate = #{uploadedate,jdbcType=DATE},
+      resourceType = #{resourcetype,jdbcType=INTEGER},
+      ok_read = #{okRead,jdbcType=TINYINT},
+      type = #{type,jdbcType=TINYINT},
+      likeSum = #{likesum,jdbcType=INTEGER},
+      aid = #{aid,jdbcType=INTEGER},
+      fid = #{fid,jdbcType=INTEGER},
+      cid = #{cid,jdbcType=INTEGER},
+      ordery = #{ordery,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

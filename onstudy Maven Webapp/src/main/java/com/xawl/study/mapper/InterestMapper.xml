@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xawl.study.dao.InterestMapper" >
+  <resultMap id="BaseResultMap" type="com.xawl.study.model.Interest" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="InterestName" property="interestname" jdbcType="VARCHAR" />
+    <result column="isuse" property="isuse" jdbcType="VARCHAR" />
+    <result column="idesc" property="idesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, InterestName, isuse, idesc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from interest
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from interest
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xawl.study.model.Interest" >
+    insert into interest (ID, InterestName, isuse, 
+      idesc)
+    values (#{id,jdbcType=INTEGER}, #{interestname,jdbcType=VARCHAR}, #{isuse,jdbcType=VARCHAR}, 
+      #{idesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xawl.study.model.Interest" >
+    insert into interest
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="interestname != null" >
+        InterestName,
+      </if>
+      <if test="isuse != null" >
+        isuse,
+      </if>
+      <if test="idesc != null" >
+        idesc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="interestname != null" >
+        #{interestname,jdbcType=VARCHAR},
+      </if>
+      <if test="isuse != null" >
+        #{isuse,jdbcType=VARCHAR},
+      </if>
+      <if test="idesc != null" >
+        #{idesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xawl.study.model.Interest" >
+    update interest
+    <set >
+      <if test="interestname != null" >
+        InterestName = #{interestname,jdbcType=VARCHAR},
+      </if>
+      <if test="isuse != null" >
+        isuse = #{isuse,jdbcType=VARCHAR},
+      </if>
+      <if test="idesc != null" >
+        idesc = #{idesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xawl.study.model.Interest" >
+    update interest
+    set InterestName = #{interestname,jdbcType=VARCHAR},
+      isuse = #{isuse,jdbcType=VARCHAR},
+      idesc = #{idesc,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
